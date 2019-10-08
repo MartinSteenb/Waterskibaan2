@@ -50,6 +50,7 @@ namespace Waterskibaan2
                 if (lijn.PositieOpDeKabel == 9)
                 {
                     lijn.PositieOpDeKabel = 0;
+                    lijn.sporter.AantalRondenNogTeGaan--;
                 }
                 else
                 {
@@ -62,7 +63,7 @@ namespace Waterskibaan2
         {
             foreach(Lijn lijn in _lijnen)
             {
-                if(lijn.PositieOpDeKabel == 9)
+                if(lijn.PositieOpDeKabel == 9 && lijn.sporter.AantalRondenNogTeGaan == 1)
                 {
                     _lijnen.Remove(lijn);
                     return lijn;
