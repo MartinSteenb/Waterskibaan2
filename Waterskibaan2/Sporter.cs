@@ -14,10 +14,14 @@ namespace Waterskibaan2
         public Skies Skies { get; set; }
         public Color KledingKleur { get; set; }
         public List<IMoves> Moves { get; set; }
+        public int BehaaldePunten { get; set; }
 
         public Sporter(List<IMoves> moves)
         {
-            Moves = moves;
+            foreach(IMoves move in moves)
+            {
+                BehaaldePunten += move.Move();
+            }
         }
 
     }
