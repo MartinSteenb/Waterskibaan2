@@ -9,10 +9,10 @@ namespace Waterskibaan2
     public class Lijn
     {
         public int PositieOpDeKabel { get; set; }
-        Sporter sporter;
-        public Lijn(Sporter sporter)
+        //Sporter sporter;
+        public Lijn(/*Sporter sporter*/)
         {
-            this.sporter = sporter;
+            //this.sporter = sporter;
         }
     }
 }
