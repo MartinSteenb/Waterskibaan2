@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan2
 {
-    class Zwemvest
+    public class Zwemvest
     {
     }
 }
