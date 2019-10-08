@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan2
 {
-    public class Program
+    public interface IMoves
     {
-        static void Main(string[] args)
-        {
-            
-        }
+        int Move();
     }
 }

@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan2
 {
-    public class Program
+    public class Lijn
     {
-        static void Main(string[] args)
+        public int PositieOpDeKabel { get; set; }
+        Sporter sporter;
+        public Lijn(Sporter sporter)
         {
-            
+            this.sporter = sporter;
         }
     }
 }
