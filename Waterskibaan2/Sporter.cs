@@ -22,6 +22,20 @@ namespace Waterskibaan2
             {
                 BehaaldePunten += move.Move();
             }
+
+            int randomNum = MoveCollection.random.Next(0, 3);
+            if (randomNum == 0)
+            {
+                KledingKleur = Color.FromArgb(0, 255, 255, 255);
+            }
+            else if (randomNum == 1)
+            {
+                KledingKleur = Color.FromArgb(0, 0, 255, 255);
+            }
+            else
+            {
+                KledingKleur = Color.FromArgb(0, 0, 0, 255);
+            }
         }
 
     }

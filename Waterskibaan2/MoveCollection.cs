@@ -9,7 +9,7 @@ namespace Waterskibaan2
     public static class MoveCollection
     {
         private static List<IMoves> randomMoves = new List<IMoves>();
-        private static Random random = new Random();
+        public static Random random = new Random();
 
         public static List<IMoves> GetWillekeurigeMoves()
         {
