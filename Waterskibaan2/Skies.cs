@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan2
 {
-    public class Program
+    class Skies
     {
-        static void Main(string[] args)
-        {
-            
-        }
     }
 }
