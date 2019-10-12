@@ -9,25 +9,21 @@ namespace Waterskibaan2
     public class Springen : IMoves
     {
         private int punten;
-        private Random random;
-        public Springen(Random random)
-        {
-            this.random = random;
-        }
+        
         public int Move()
         {
             
-            int randomNum = random.Next(4, 6);
+            int randomNum = MoveCollection.random.Next(0, 2);
           
-            if (randomNum == 4)
+            if (randomNum == 0)
             {
                 punten = 0;
-                Console.WriteLine("Springen mislukt.");
+                //Console.WriteLine("Springen mislukt.");
             }
             else
             {
                 punten = 5;
-                Console.WriteLine("Springen gelukt.");
+                //Console.WriteLine("Springen gelukt.");
             }
             return punten;
         }

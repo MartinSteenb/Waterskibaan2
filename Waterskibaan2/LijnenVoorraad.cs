@@ -21,7 +21,7 @@ namespace Waterskibaan2
 
         public Lijn VerwijderEersteLijn()
         {
-            if (_lijnenQueue.Count != 0)
+            if (GetAantalLijnen() != 0)
             {
                 return _lijnenQueue.Dequeue();
             }
