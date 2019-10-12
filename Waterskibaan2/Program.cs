@@ -10,7 +10,7 @@ namespace Waterskibaan2
     {
         static void Main(string[] args)
         {
-            TestOpdracht5();
+            TestOpdracht11();
         }
 
         public static void TestOpdracht2()
@@ -56,6 +56,13 @@ namespace Waterskibaan2
         {
             var sporter = new Sporter(MoveCollection.GetWillekeurigeMoves());
             Console.WriteLine(sporter.BehaaldePunten);
+        }
+
+        public static void TestOpdracht11()
+        {
+            var game = new Game();
+            game.Initialize();
+            
         }
     }
 }

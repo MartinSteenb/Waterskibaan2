@@ -8,7 +8,7 @@ namespace Waterskibaan2
 {
     public class Kabel
     {
-        private LinkedList<Lijn> _lijnen;
+        public LinkedList<Lijn> _lijnen;
         public Kabel()
         {
             _lijnen = new LinkedList<Lijn>();
@@ -16,8 +16,10 @@ namespace Waterskibaan2
 
         public bool IsStartPositieLeeg()
         {
+            
             if(_lijnen.Count == 0) // Als er nog geen lijnen aan de kabel gekoppeld zijn
             {
+                Console.WriteLine("Startpositie is leeg.");
                 return true;
             }
             else 
@@ -36,37 +38,51 @@ namespace Waterskibaan2
 
         public void NeemLijnInGebruik(Lijn lijn)
         {
-            if (IsStartPositieLeeg())
+            
+            if (IsStartPositieLeeg() && _lijnen.Count <= 10)
             {
+                Console.WriteLine("Lijn wordt in gebruik genomen");
                 lijn.PositieOpDeKabel = 0;
                 _lijnen.AddFirst(lijn);
             }
+            Console.WriteLine($"_lijnen.count = {_lijnen.Count}");
         }
 
         public void VerschuifLijnen()
         {
-            foreach (Lijn lijn in _lijnen)
+
+            for (LinkedListNode<Lijn> current = _lijnen?.First; current != null; current = current.Next)
             {
-                if (lijn.PositieOpDeKabel == 9)
-                {
-                    lijn.PositieOpDeKabel = 0;
-                    lijn.sporter.AantalRondenNogTeGaan--;
-                }
-                else
-                {
-                    lijn.PositieOpDeKabel += 1;
-                }
+                current.Value.PositieOpDeKabel++;
             }
+
+            if (_lijnen?.Last?.Value?.PositieOpDeKabel >= 10)
+            {
+                Console.WriteLine("Positie op kabel groter of gelijk aan 10.");
+                Lijn lijn = _lijnen.Last.Value;
+                
+                _lijnen.RemoveLast();
+                lijn.sporter.AantalRondenNogTeGaan--;
+                lijn.PositieOpDeKabel = 0;
+                _lijnen.AddFirst(lijn);
+            }
+            
+            
         }
 
         public Lijn VerwijderLijnVanKabel()
         {
+            Lijn l = null;
+
             foreach(Lijn lijn in _lijnen)
             {
-                if(lijn.PositieOpDeKabel == 9 && lijn.sporter.AantalRondenNogTeGaan == 1)
+                if(lijn.PositieOpDeKabel >= 9 && lijn.sporter.AantalRondenNogTeGaan == 1)
                 {
-                    _lijnen.Remove(lijn);
-                    return lijn;
+                    l = lijn;
+                    _lijnen.RemoveLast();
+                    Console.WriteLine("Lijn verwijdert en toegevoegd aan voorraad.");
+                    Console.WriteLine();
+                    return l;
                 }
             }
             return null;
@@ -75,6 +91,7 @@ namespace Waterskibaan2
         public override string ToString()
         {
             string lijnenString = "";
+            
             foreach (Lijn lijn in _lijnen)
             {
                 lijnenString += lijn.PositieOpDeKabel + "| ";

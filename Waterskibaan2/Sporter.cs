@@ -13,11 +13,13 @@ namespace Waterskibaan2
         public Zwemvest Zwemvest { get; set; }
         public Skies Skies { get; set; }
         public Color KledingKleur { get; set; }
-        public List<IMoves> Moves { get; set; }
+        public List<IMoves> Moves { get; set; } 
         public int BehaaldePunten { get; set; }
+        public IMoves HuidigeMove { get; set; }
 
         public Sporter(List<IMoves> moves)
         {
+            Moves = moves;
             foreach(IMoves move in moves)
             {
                 BehaaldePunten += move.Move();

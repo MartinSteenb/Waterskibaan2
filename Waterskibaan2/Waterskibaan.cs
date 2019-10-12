@@ -6,30 +6,42 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan2
 {
-    class Waterskibaan
+    public class Waterskibaan
     {
-        private Kabel kabel;
-        private LijnenVoorraad voorraad;
-        public Waterskibaan(Kabel kabel)
+        public Kabel kabel;
+        public LijnenVoorraad voorraad;
+        public Waterskibaan(/*Kabel kabel*/)
         {
-            this.kabel = kabel;
+            //this.kabel = kabel;
+            kabel = new Kabel();
             voorraad = new LijnenVoorraad();
             for (int i = 0; i < 15; i++)
             {
                 voorraad.LijnToevoegenAanRij(new Lijn());
             }
         }
-        // Verschuift alle lijnen op de kabel met 1 en verwijdert een lijn als die op positie 9 is
+        // Verschuift alle lijnen op de kabel met 1 en verwijdert een lijn als die op positie 9 is en 
+        // aantal ronder te gaan = 1
         // Daarna wordt die lijn toegevoegd aan de voorraad
         public void VerplaatsKabel()
-        {
+        { 
+            if(kabel._lijnen.Count > 0)
+            {
+                foreach (Lijn lijn in kabel._lijnen)
+                {
+                    if(MoveCollection.random.Next(0,4) == 0)
+                    {
+                        lijn.sporter.HuidigeMove = lijn.sporter.Moves[MoveCollection.random.Next(0, lijn.sporter.Moves.Count)];
+                        Console.WriteLine($"Huidige move van sporter op positie {lijn.PositieOpDeKabel} = {lijn.sporter.HuidigeMove}");
+                    }
+                }
+            }
+            
             kabel.VerschuifLijnen();
             if(kabel.VerwijderLijnVanKabel() != null)
             {
-                Lijn lijn = kabel.VerwijderLijnVanKabel();
-                voorraad.LijnToevoegenAanRij(lijn);
+                voorraad.LijnToevoegenAanRij(kabel.VerwijderLijnVanKabel());
             }
-
         }
 
         public void SporterStart(Sporter sporter)
@@ -37,17 +49,8 @@ namespace Waterskibaan2
             Lijn lijn = voorraad.VerwijderEersteLijn();
             lijn.sporter = sporter;
             kabel.NeemLijnInGebruik(lijn);
-        
-            //1 of twee rondjes bepalen
-            int randomNum = MoveCollection.random.Next(0, 2);
-            if (randomNum == 0)
-            {
-                sporter.AantalRondenNogTeGaan = 1;
-            }
-            else
-            {
-                sporter.AantalRondenNogTeGaan = 2;
-            }
+            sporter.AantalRondenNogTeGaan = 1;//MoveCollection.random.Next(1, 3);
+
             Console.WriteLine($"Aantal ronden te gaan = {sporter.AantalRondenNogTeGaan}");
 
             if (sporter.Skies == null)
@@ -58,6 +61,15 @@ namespace Waterskibaan2
             {
                 throw new Exception(string.Format("Sporter heeft geen zwemvest."));
             }
+        }
+
+        public void Start()
+        {
+            throw new NotImplementedException();
+        }
+        public void Stop()
+        {
+            throw new NotImplementedException();
         }
 
         public override string ToString()
