@@ -69,7 +69,5 @@ namespace Waterskibaan2
             main.ShowDialog();*/
         }
 
-        
-
     }
 }

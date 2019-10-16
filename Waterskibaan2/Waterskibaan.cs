@@ -17,7 +17,7 @@ namespace Waterskibaan2
             voorraad = new LijnenVoorraad();
             for (int i = 0; i < 15; i++)
             {
-                voorraad.LijnToevoegenAanRij(new Lijn());
+                voorraad.LijnToevoegenAanRij(new Lijn() { nummer = i });
             }
         }
         // Verschuift alle lijnen op de kabel met 1 en verwijdert een lijn als die op positie 9 is en 
@@ -29,10 +29,15 @@ namespace Waterskibaan2
             {
                 foreach (Lijn lijn in kabel._lijnen)
                 {
-                    if(MoveCollection.random.Next(0,4) == 0)
+                    if (MoveCollection.random.Next(0, 4) == 0)
                     {
                         lijn.sporter.HuidigeMove = lijn.sporter.Moves[MoveCollection.random.Next(0, lijn.sporter.Moves.Count)];
+                        lijn.sporter.BehaaldePunten += lijn.sporter.HuidigeMove.Move();
                         Console.WriteLine($"Huidige move van sporter op positie {lijn.PositieOpDeKabel} = {lijn.sporter.HuidigeMove}");
+                    }
+                    else
+                    {
+                        lijn.sporter.HuidigeMove = null;
                     }
                 }
             }
@@ -49,7 +54,7 @@ namespace Waterskibaan2
             Lijn lijn = voorraad.VerwijderEersteLijn();
             lijn.sporter = sporter;
             kabel.NeemLijnInGebruik(lijn);
-            sporter.AantalRondenNogTeGaan = 1;//MoveCollection.random.Next(1, 3);
+            sporter.AantalRondenNogTeGaan = MoveCollection.random.Next(1, 3);
 
             Console.WriteLine($"Aantal ronden te gaan = {sporter.AantalRondenNogTeGaan}");
 

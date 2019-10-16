@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
-using System.Windows.Controls;
-using System.Windows.Threading;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace Waterskibaan2
@@ -16,7 +14,6 @@ namespace Waterskibaan2
         public WachtrijStarten wachtrijStarten;
         public InstructieGroep instructieGroep;
         public WachtrijInstructie wachtrijinstructie;
-        public Logger logger;
 
         public delegate void NieuweBezoekerHandler(NieuweBezoekerArgs args);
         public event NieuweBezoekerHandler NieuweBezoeker;
@@ -29,18 +26,13 @@ namespace Waterskibaan2
 
         private static System.Timers.Timer aTimer;
         private int loopCounter;
-        public Canvas Canvas { get; set; }
 
-        public DispatcherTimer timer { get; set; } = new DispatcherTimer();
-
-        public void Initialize(Canvas canvas)
+        public void Initialize()
         {
-            Canvas = canvas;
             waterskibaan = new Waterskibaan();
             wachtrijStarten = new WachtrijStarten();
             instructieGroep = new InstructieGroep();
             wachtrijinstructie = new WachtrijInstructie();
-            logger = new Logger(waterskibaan.kabel);
 
             NieuweBezoeker += OnNieuweBezoeker;
             InstructieAfgelopen += OnInstructieAfgelopen;
@@ -48,11 +40,11 @@ namespace Waterskibaan2
 
             SetTimer();
 
-            /*Console.WriteLine("\nPress the Enter key to exit the application...\n");
+            Console.WriteLine("\nPress the Enter key to exit the application...\n");
             Console.WriteLine("The application started at {0:HH:mm:ss.fff}", DateTime.Now);
             Console.ReadLine();
-            timer.Stop();
-            timer.Dispose();*/
+            aTimer.Stop();
+            aTimer.Dispose();
 
             Console.WriteLine("Terminating the application...");
         }
@@ -60,54 +52,56 @@ namespace Waterskibaan2
         private void SetTimer()
         {
             // Create a timer with a two second interval.
-            /*aTimer = new System.Timers.Timer(1000);
+            aTimer = new System.Timers.Timer(MoveCollection.random.Next(2000, 3001));
             // Hook up the Elapsed event for the timer. 
             aTimer.Elapsed += OnTimedEvent;
             aTimer.AutoReset = true;
-            aTimer.Enabled = true;*/
-
-            
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += timer_Tick;
-            timer.Start();
-
+            aTimer.Enabled = true;
             loopCounter = 0;
         }
 
-        public void timer_Tick(object sender, EventArgs e)
+        private void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
-            //Console.WriteLine($"loopCounter = {loopCounter}");
+            /*Sporter sporter = new Sporter(MoveCollection.GetWillekeurigeMoves());
+            
+            waterskibaan.SporterStart(sporter);
+            Console.WriteLine(waterskibaan);
+            waterskibaan.VerplaatsKabel();
+            Console.WriteLine();*/
+
+
             if (loopCounter % 3 == 0)
             {
                 Sporter sporter = new Sporter(MoveCollection.GetWillekeurigeMoves());
                 NieuweBezoeker?.Invoke(new NieuweBezoekerArgs(sporter));
             }
 
-            if (loopCounter % 10 == 0)
+            if (loopCounter % 20 == 0)
             {
                 List<Sporter> sporters = instructieGroep.SportersVerlatenRij(wachtrijinstructie.GetAlleSporters().Count);
                 InstructieAfgelopen?.Invoke(new InstructieAfgelopenArgs(sporters));
-                //Console.WriteLine($"Totaal aantal bezoekers = {logger.totaalAantalBezoekers()}");
-                //Console.WriteLine($"Hoogste score tot nu toe = {logger.hoogsteScore()}");
-                //Console.WriteLine($"Totaal aantal rondjes gedaan = {logger.totaalAantalRondjes()}");
             }
 
             if (loopCounter % 4 == 0)
             {
                 LijnenVerplaatst?.Invoke();
             }
-            loopCounter++;
         }
 
         private void OnNieuweBezoeker(NieuweBezoekerArgs e)
         {
             wachtrijinstructie.SporterNeemPlaatsInRij(e.Sporter);
-            logger.voegBezoekerToe(e.Sporter);
-            Console.WriteLine(wachtrijinstructie);
+            //Console.WriteLine(wachtrijinstructie);
         }
 
         private void OnInstructieAfgelopen(InstructieAfgelopenArgs e)
         {
+            foreach (Sporter sporter in e.Sporters)
+            {
+                wachtrijStarten.SporterNeemPlaatsInRij(sporter);
+            }
+            //Console.WriteLine(wachtrijStarten);
+
             int wriGroep = wachtrijinstructie.GetAlleSporters().Count;
             int maxInstructieGroep = instructieGroep.MAX_LENGTE_RIJ;
 
@@ -116,15 +110,7 @@ namespace Waterskibaan2
             {
                 instructieGroep.SporterNeemPlaatsInRij(sporter);
             }
-            Console.WriteLine(instructieGroep);
-
-            foreach (Sporter sporter in e.Sporters)
-            {
-                wachtrijStarten.SporterNeemPlaatsInRij(sporter);
-            }
-            Console.WriteLine(wachtrijStarten);
-
-            
+            //Console.WriteLine(instructieGroep);
         }
 
         private void OnLijnenVerplaatst()

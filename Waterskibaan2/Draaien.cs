@@ -9,7 +9,6 @@ namespace Waterskibaan2
     public class Draaien : IMoves
     {
         private int punten;
-
         public int Move()
         {
             
@@ -26,6 +25,11 @@ namespace Waterskibaan2
                 //Console.WriteLine("Draaien gelukt.");
             }
             return punten;
+        }
+
+        public override string ToString()
+        {
+            return "Draaien";
         }
     }
 }

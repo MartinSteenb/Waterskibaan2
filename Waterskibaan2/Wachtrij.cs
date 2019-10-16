@@ -47,7 +47,7 @@ namespace Waterskibaan2
 
         public override string ToString()
         {
-            return $"{_sportersQueue.Count} sporters in de {_wachtrijType.ToLower()}";
+            return $"{_sportersQueue.Count} in {_wachtrijType.ToLower()}";
         }
     }
 }

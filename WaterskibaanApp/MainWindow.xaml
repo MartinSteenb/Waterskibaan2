@@ -1,0 +1,25 @@
+﻿<Window x:Class="WaterskibaanApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WaterskibaanApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Canvas Name="myCanvas" Background="GreenYellow">
+        <Label Name="lblHoeveelheidLijnen" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="536" Canvas.Top="355" />
+        <Grid Name="myGrid" Height="200" Canvas.Left="100" Canvas.Top="150" Width="600" Background="Aqua" />
+        
+        <Label Name="lblTotaalAantalBezoekers" FontSize="12" Canvas.Left="10" Canvas.Top="10"/>
+        <Label Name="lblHoogsteScore" FontSize="12" Canvas.Left="10" Canvas.Top="20"/>
+        <Label Name="lblBezoekersMetRoodShirt" FontSize="12" Canvas.Left="10" Canvas.Top="30"/>
+        <Label Name="lblBezoekersGesorteerdOpLichtheid" FontSize="12" Canvas.Left="10" Canvas.Top="100"/>
+        <Label Name="lblTotaalAantalRondjes" FontSize="12" Canvas.Left="10" Canvas.Top="40"/>
+        <Label Name="lblUniekeMoves" FontSize="12" Canvas.Left="10" Canvas.Top="50"/>
+        
+
+
+
+
+    </Canvas>
+</Window>

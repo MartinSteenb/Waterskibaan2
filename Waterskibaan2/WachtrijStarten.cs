@@ -12,7 +12,7 @@ namespace Waterskibaan2
 
         public WachtrijStarten()
         {
-            _wachtrijType = "Wachtrij voor starten";
+            _wachtrijType = "Wachtrij starten";
         }
     }
 }
