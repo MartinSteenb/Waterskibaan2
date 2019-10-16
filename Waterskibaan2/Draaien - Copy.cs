@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan2
 {
-    public class Springen : IMoves
+    public class Draaien : IMoves
     {
         private int punten;
 
@@ -14,24 +14,18 @@ namespace Waterskibaan2
         {
             
             int randomNum = MoveCollection.random.Next(0, 2);
-          
+           
             if (randomNum == 0)
             {
                 punten = 0;
-                //Console.WriteLine("Springen mislukt.");
+                //Console.WriteLine("Draaien mislukt.");
             }
             else
             {
-                punten = 5;
-                //Console.WriteLine("Springen gelukt.");
+                punten = 10;
+                //Console.WriteLine("Draaien gelukt.");
             }
             return punten;
         }
-
-        public override string ToString()
-        {
-            return "Springen";
-        }
-        
     }
 }

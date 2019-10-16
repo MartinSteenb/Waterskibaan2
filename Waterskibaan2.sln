@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29230.47
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Waterskibaan2", "Waterskibaan2\Waterskibaan2.csproj", "{D134DB38-CA85-4F0E-AD33-11E072674411}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterskibaanApp", "WaterskibaanApp\WaterskibaanApp.csproj", "{EF8D7C05-DBF0-4846-A23A-B698FAC1142A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D134DB38-CA85-4F0E-AD33-11E072674411}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D134DB38-CA85-4F0E-AD33-11E072674411}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D134DB38-CA85-4F0E-AD33-11E072674411}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF8D7C05-DBF0-4846-A23A-B698FAC1142A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF8D7C05-DBF0-4846-A23A-B698FAC1142A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF8D7C05-DBF0-4846-A23A-B698FAC1142A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF8D7C05-DBF0-4846-A23A-B698FAC1142A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
